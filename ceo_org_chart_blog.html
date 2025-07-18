@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decuplai Executive Team Structure</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #FFFEF7;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .geometric-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .geo-shape {
+            position: absolute;
+            border-radius: 12px;
+        }
+
+        .geo-shape:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            width: 80px;
+            height: 80px;
+            background: rgba(221, 107, 32, 0.15);
+            transform: rotate(15deg);
+        }
+
+        .geo-shape:nth-child(2) {
+            top: 20%;
+            right: 8%;
+            width: 120px;
+            height: 60px;
+            background: rgba(49, 130, 206, 0.12);
+            transform: rotate(-8deg);
+            border-radius: 30px;
+        }
+
+        .geo-shape:nth-child(3) {
+            bottom: 15%;
+            left: 12%;
+            width: 100px;
+            height: 100px;
+            background: rgba(56, 161, 105, 0.1);
+            transform: rotate(25deg);
+            border-radius: 50px;
+        }
+
+        .geo-shape:nth-child(4) {
+            bottom: 25%;
+            right: 15%;
+            width: 90px;
+            height: 45px;
+            background: rgba(26, 54, 93, 0.08);
+            transform: rotate(-12deg);
+        }
+
+        .org-chart-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 50px;
+            border: 1px solid rgba(26, 54, 93, 0.1);
+            box-shadow: 
+                0 20px 40px rgba(26, 54, 93, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            max-width: 1600px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #DD6B20, #3182CE);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(221, 107, 32, 0.25);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 2;
+            letter-spacing: -0.5px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(221, 107, 32, 0.35);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .company-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #1A365D;
+            margin-bottom: 16px;
+            letter-spacing: -2px;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            color: #4A5568;
+            font-weight: 500;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: #DD6B20;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .org-chart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .level {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .agent-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            border: 2px solid rgba(26, 54, 93, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            min-width: 240px;
+            max-width: 300px;
+            box-shadow: 0 8px 24px rgba(26, 54, 93, 0.12);
+            cursor: pointer;
+        }
+
+        .agent-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #DD6B20, #3182CE);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .agent-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(26, 54, 93, 0.2);
+            border-color: rgba(221, 107, 32, 0.3);
+        }
+
+        .agent-card:hover::before {
+            opacity: 1;
+        }
+
+        .cao-card {
+            background: linear-gradient(135deg, #1A365D, #3182CE);
+            color: white;
+            transform: scale(1.1);
+            border: 2px solid rgba(221, 107, 32, 0.3);
+            box-shadow: 0 16px 32px rgba(26, 54, 93, 0.25);
+        }
+
+        .cao-card::before {
+            background: linear-gradient(90deg, #DD6B20, #FFFEF7);
+            opacity: 1;
+        }
+
+        .type-indicator {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            border: 2px solid rgba(255, 255, 255, 0.9);
+        }
+
+        .human-indicator {
+            background: linear-gradient(135deg, #38A169, #DD6B20);
+            color: white;
+        }
+
+        .agent-indicator {
+            background: linear-gradient(135deg, #3182CE, #1A365D);
+            color: white;
+        }
+
+        .vacant-indicator {
+            background: rgba(74, 85, 104, 0.2);
+            color: #4A5568;
+            border-style: dashed;
+        }
+
+        .agent-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #1A365D;
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+        }
+
+        .cao-card .agent-name {
+            color: white;
+        }
+
+        .agent-title {
+            font-size: 0.9rem;
+            color: #4A5568;
+            margin-bottom: 8px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .cao-card .agent-title {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .agent-type {
+            font-size: 0.75rem;
+            color: #DD6B20;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cao-card .agent-type {
+            color: #DD6B20;
+        }
+
+        .vacant-card {
+            opacity: 0.6;
+            border-style: dashed;
+            border-color: #4A5568;
+        }
+
+        .vacant-card .agent-name {
+            color: #4A5568;
+        }
+
+        .vacant-card .agent-type {
+            color: #4A5568;
+        }
+
+        .connection-container {
+            position: relative;
+            width: 100%;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .connection-line {
+            width: 3px;
+            height: 30px;
+            background: linear-gradient(to bottom, #DD6B20, #3182CE);
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .connection-line::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            background: #3182CE;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        .team-section {
+            border-radius: 20px;
+            padding: 30px 20px 20px;
+            margin-top: 20px;
+            position: relative;
+            border: 2px solid transparent;
+        }
+
+        .team-section::before {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .finance-team {
+            background: rgba(56, 161, 105, 0.08);
+            border-color: rgba(56, 161, 105, 0.2);
+        }
+
+        .finance-team::before {
+            content: 'Finance Team';
+            background: #38A169;
+        }
+
+        .ops-team {
+            background: rgba(74, 85, 104, 0.08);
+            border-color: rgba(74, 85, 104, 0.2);
+        }
+
+        .ops-team::before {
+            content: 'Operations Team';
+            background: #4A5568;
+        }
+
+        .caro-team {
+            background: rgba(221, 107, 32, 0.08);
+            border: 2px dashed rgba(221, 107, 32, 0.3);
+        }
+
+        .caro-team::before {
+            content: 'Genesis Creation Lab';
+            background: #DD6B20;
+        }
+
+        .genesis-card {
+            border: 2px dashed rgba(221, 107, 32, 0.4) !important;
+            background: rgba(221, 107, 32, 0.05) !important;
+        }
+
+        .genesis-card::before {
+            background: linear-gradient(90deg, #DD6B20, #3182CE) !important;
+            opacity: 0.7 !important;
+        }
+
+        .content-team {
+            background: rgba(49, 130, 206, 0.08);
+            border-color: rgba(49, 130, 206, 0.2);
+        }
+
+        .content-team::before {
+            content: 'Content Strategy Team';
+            background: #3182CE;
+        }
+
+        @media (max-width: 1200px) {
+            .company-title {
+                font-size: 2.8rem;
+            }
+            
+            .org-chart-container {
+                padding: 30px 20px;
+            }
+            
+            .cao-card {
+                transform: scale(1.05);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .level {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .agent-card {
+                max-width: 100%;
+                width: 300px;
+            }
+
+            .company-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 54, 93, 0.85);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .profile-modal {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            border: 2px solid rgba(221, 107, 32, 0.2);
+            box-shadow: 0 25px 50px rgba(26, 54, 93, 0.3);
+            max-width: 500px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.9) translateY(50px);
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active .profile-modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: rgba(74, 85, 104, 0.1);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            color: #4A5568;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background: rgba(221, 107, 32, 0.1);
+            color: #DD6B20;
+            transform: scale(1.1);
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(26, 54, 93, 0.1);
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #DD6B20, #3182CE);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin: 0 auto 20px;
+            box-shadow: 0 8px 24px rgba(221, 107, 32, 0.25);
+            border: 3px solid white;
+        }
+
+        .profile-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1A365D;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+
+        .profile-title {
+            font-size: 1.1rem;
+            color: #4A5568;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .profile-type-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #DD6B20, #3182CE);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .profile-section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1A365D;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-content {
+            color: #4A5568;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .skill-tag {
+            background: rgba(49, 130, 206, 0.1);
+            color: #1A365D;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid rgba(49, 130, 206, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .stat-item {
+            background: rgba(26, 54, 93, 0.05);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(26, 54, 93, 0.1);
+        }
+
+        .stat-value {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #DD6B20;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: #4A5568;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 600px) {
+            .profile-modal {
+                padding: 25px;
+                margin: 10px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="geometric-background">
+        <div class="geo-shape"></div>
+        <div class="geo-shape"></div>
+        <div class="geo-shape"></div>
+        <div class="geo-shape"></div>
+    </div>
+    
+    <div class="org-chart-container">
+        <!-- CTA Button -->
+        <a href="mailto:info@L55consulting.com?subject=Inquiry%20about%20L55%20Consulting%20Services&body=Hello%2C%0A%0AI%20saw%20your%20organizational%20chart%20and%20would%20like%20to%20learn%20more%20about%20your%20AI%20consulting%20services.%0A%0APlease%20contact%20me%20to%20discuss%20potential%20collaboration.%0A%0AThank%20you!" class="cta-button">
+            <span>📧</span>
+            Get in Touch
+        </a>
+        
+        <div class="header">
+            <h1 class="company-title">L55 Consulting</h1>
+            <p class="subtitle">AI Powered Organization</p>
+            <p class="tagline">10x Operations Through AI Augmentation</p>
+        </div>
+
+        <div class="org-chart">
+            <!-- CAO Level -->
+            <div class="level">
+                <div class="agent-card cao-card">
+                    <div class="type-indicator human-indicator">👤</div>
+                    <div class="agent-name">Martin Lavoie</div>
+                    <div class="agent-title">Chief Augmentation Officer (CAO)</div>
+                    <div class="agent-type">Human</div>
+                </div>
+            </div>
+
+            <div class="connection-container">
+                <div class="connection-line"></div>
+            </div>
+
+            <!-- Senior Leadership Level -->
+            <div class="level">
+                <div class="agent-card">
+                    <div class="type-indicator agent-indicator">🤖</div>
+                    <div class="agent-name">Sophie Sansdétour</div>
+                    <div class="agent-title">SVP, Strategy & Innovation</div>
+                    <div class="agent-type">Agent</div>
+                </div>
+
+                <div class="agent-card">
+                    <div class="type-indicator agent-indicator">🤖</div>
+                    <div class="agent-name">Hugo Stratégo</div>
+                    <div class="agent-title">VP, Content Strategy</div>
+                    <div class="agent-type">Agent</div>
+                </div>
+
+                <div class="agent-card">
+                    <div class="type-indicator agent-indicator">🤖</div>
+                    <div class="agent-name">Luc Persuasio</div>
+                    <div class="agent-title">VP, Sales & Proposals</div>
+                    <div class="agent-type">Agent</div>
+                </div>
+
+                <div class="agent-card">
+                    <div class="type-indicator agent-indicator">🤖</div>
+                    <div class="agent-name">Claire Yield</div>
+                    <div class="agent-title">VP, Service Delivery</div>
+                    <div class="agent-type">Agent</div>
+                </div>
+
+                <div class="agent-card">
+                    <div class="type-indicator agent-indicator">🤖</div>
+                    <div class="agent-name">Halex Genesis</div>
+                    <div class="agent-title">Chief Agent Resource Officer (CARO)</div>
+                    <div class="agent-type">Agent</div>
+                </div>
+
+                <div class="agent-card">
+                    <div class="type-indicator agent-indicator">🤖</div>
+                    <div class="agent-name">François Légitime</div>
+                    <div class="agent-title">EthicEdge Legal Advisor</div>
+                    <div class="agent-type">Agent</div>
+                </div>
+            </div>
+
+            <div class="connection-container">
+                <div class="connection-line"></div>
+            </div>
+
+            <!-- Operations Level -->
+            <div class="level">
+                <div class="agent-card">
+                    <div class="type-indicator agent-indicator">🤖</div>
+                    <div class="agent-name">Gaston Léquilibre</div>
+                    <div class="agent-title">VP, Finance & Accounting</div>
+                    <div class="agent-type">Agent</div>
+                </div>
+
+                <div class="agent-card vacant-card">
+                    <div class="type-indicator vacant-indicator">⚪</div>
+                    <div class="agent-name">Didier Cadence</div>
+                    <div class="agent-title">VP, Operations & Quality</div>
+                    <div class="agent-type">Vacant</div>
+                </div>
+
+                <div class="agent-card vacant-card">
+                    <div class="type-indicator vacant-indicator">⚪</div>
+                    <div class="agent-name">Amélie Flux</div>
+                    <div class="agent-title">VP, Customer Success</div>
+                    <div class="agent-type">Vacant</div>
+                </div>
+            </div>
+
+            <!-- Finance Team -->
+            <div class="finance-team team-section">
+                <div class="level">
+                    <div class="agent-card">
+                        <div class="type-indicator agent-indicator">🤖</div>
+                        <div class="agent-name">Claire Monétaire</div>
+                        <div class="agent-title">Senior Accountant</div>
+                        <div class="agent-type">Agent</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Operations Team -->
+            <div class="ops-team team-section">
+                <div class="level">
+                    <div class="agent-card">
+                        <div class="type-indicator agent-indicator">🤖</div>
+                        <div class="agent-name">Luke Diagram</div>
+                        <div class="agent-title">Director, Solution Architecture</div>
+                        <div class="agent-type">Agent</div>
+                    </div>
+                </div>
+
+                <div class="connection-container">
+                    <div class="connection-line"></div>
+                </div>
+
+                <div class="level">
+                    <div class="agent-card">
+                        <div class="type-indicator agent-indicator">🤖</div>
+                        <div class="agent-name">Max Coder</div>
+                        <div class="agent-title">Solution Developer</div>
+                        <div class="agent-type">Agent</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARO Team -->
+            <div class="caro-team team-section">
+                <div class="level">
+                    <div class="agent-card genesis-card">
+                        <div class="type-indicator agent-indicator">🤖</div>
+                        <div class="agent-name">Genesis Agent</div>
+                        <div class="agent-title">Agent Creation Specialist</div>
+                        <div class="agent-type">Agent</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Strategy Team -->
+            <div class="content-team team-section">
+                <div class="level">
+                    <div class="agent-card">
+                        <div class="type-indicator agent-indicator">🤖</div>
+                        <div class="agent-name">Édith Cisel</div>
+                        <div class="agent-title">Editor-in-Chief</div>
+                        <div class="agent-type">Agent</div>
+                    </div>
+
+                    <div class="agent-card">
+                        <div class="type-indicator agent-indicator">🤖</div>
+                        <div class="agent-name">Jules Motclé</div>
+                        <div class="agent-title">Prompt Librarian</div>
+                        <div class="agent-type">Agent</div>
+                    </div>
+
+                    <div class="agent-card">
+                        <div class="type-indicator agent-indicator">🤖</div>
+                        <div class="agent-name">Chloé Tempo</div>
+                        <div class="agent-title">Content Ops Lead</div>
+                        <div class="agent-type">Agent</div>
+                    </div>
+
+                    <div class="agent-card">
+                        <div class="type-indicator agent-indicator">🤖</div>
+                        <div class="agent-name">Mark T. Audience</div>
+                        <div class="agent-title">Audience Analyst</div>
+                        <div class="agent-type">Agent</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div class="modal-overlay" id="profileModal">
+        <div class="profile-modal">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            
+            <div class="profile-header">
+                <div class="profile-avatar" id="modalAvatar">👤</div>
+                <div class="profile-name" id="modalName">Agent Name</div>
+                <div class="profile-title" id="modalTitle">Agent Title</div>
+                <span class="profile-type-badge" id="modalType">Agent</span>
+            </div>
+
+            <div class="profile-section">
+                <div class="section-title">📋 Overview</div>
+                <div class="section-content" id="modalOverview">
+                    Detailed description of the agent's role and responsibilities within the organization.
+                </div>
+            </div>
+
+            <div class="profile-section">
+                <div class="section-title">🎯 Key Responsibilities</div>
+                <div class="section-content" id="modalResponsibilities">
+                    • Strategic planning and execution<br>
+                    • Team coordination and management<br>
+                    • Performance optimization<br>
+                    • Stakeholder communication
+                </div>
+            </div>
+
+            <div class="profile-section">
+                <div class="section-title">⚡ Core Skills</div>
+                <div class="skills-list" id="modalSkills">
+                    <span class="skill-tag">Strategy</span>
+                    <span class="skill-tag">Leadership</span>
+                    <span class="skill-tag">Analysis</span>
+                    <span class="skill-tag">Communication</span>
+                </div>
+            </div>
+
+            <div class="profile-section">
+                <div class="section-title">📊 Performance Metrics</div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value" id="modalStat1">98%</div>
+                        <div class="stat-label">Efficiency</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="modalStat2">156</div>
+                        <div class="stat-label">Tasks Completed</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Agent data
+        const agentData = {
+            'martin-lavoie': {
+                name: 'Martin Lavoie',
+                title: 'Chief Augmentation Officer (CAO)',
+                type: 'Human',
+                avatar: '👤',
+                overview: 'Visionary leader driving the future of AI-powered business augmentation. Martin combines deep technical expertise with strategic business acumen to build and manage high-performance AI agent teams that augment human capabilities.',
+                responsibilities: '• Strategic vision and company direction<br>• AI augmentation strategy and implementation<br>• Human-AI collaboration optimization<br>• Client relationship management<br>• Innovation and technology adoption<br>• Organizational culture and values',
+                skills: ['Leadership', 'AI Strategy', 'Business Development', 'Team Building', 'Innovation'],
+                stat1: { value: '100%', label: 'Vision Clarity' },
+                stat2: { value: '15', label: 'AI Agents Led' }
+            },
+            'sophie-sansdétour': {
+                name: 'Sophie Sansdétour',
+                title: 'SVP, Strategy & Innovation',
+                type: 'Agent',
+                avatar: '🤖',
+                overview: 'Strategic mastermind specializing in market analysis and innovation roadmaps. Sophie provides comprehensive strategic guidance and identifies emerging opportunities in the AI landscape.',
+                responsibilities: '• Market research and competitive analysis<br>• Strategic planning and roadmap development<br>• Innovation pipeline management<br>• Partnership opportunity identification<br>• Technology trend analysis',
+                skills: ['Strategic Planning', 'Market Analysis', 'Innovation', 'Competitive Intelligence', 'Forecasting'],
+                stat1: { value: '94%', label: 'Accuracy Rate' },
+                stat2: { value: '47', label: 'Strategies Developed' }
+            },
+            'hugo-stratégo': {
+                name: 'Hugo Stratégo',
+                title: 'VP, Content Strategy',
+                type: 'Agent',
+                avatar: '🤖',
+                overview: 'Content strategy expert who develops comprehensive content frameworks and manages editorial processes. Hugo ensures consistent brand messaging across all channels.',
+                responsibilities: '• Content strategy development<br>• Editorial calendar management<br>• Brand voice and messaging<br>• Content team coordination<br>• Performance analytics and optimization',
+                skills: ['Content Strategy', 'Editorial Management', 'Brand Development', 'Analytics', 'Team Leadership'],
+                stat1: { value: '89%', label: 'Engagement Rate' },
+                stat2: { value: '203', label: 'Content Pieces' }
+            },
+            'luc-persuasio': {
+                name: 'Luc Persuasio',
+                title: 'VP, Sales & Proposals',
+                type: 'Agent',
+                avatar: '🤖',
+                overview: 'Sales optimization specialist focused on proposal development and client acquisition. Luc combines persuasive communication with data-driven sales strategies.',
+                responsibilities: '• Sales strategy development<br>• Proposal writing and optimization<br>• Client relationship management<br>• Sales funnel optimization<br>• Revenue forecasting',
+                skills: ['Sales Strategy', 'Proposal Writing', 'Client Relations', 'Negotiation', 'Revenue Optimization'],
+                stat1: { value: '76%', label: 'Win Rate' },
+                stat2: { value: '89', label: 'Proposals Sent' }
+            },
+            'claire-yield': {
+                name: 'Claire Yield',
+                title: 'VP, Service Delivery',
+                type: 'Agent',
+                avatar: '🤖',
+                overview: 'Service delivery expert ensuring exceptional client experiences and project success. Claire manages end-to-end service delivery with focus on quality and efficiency.',
+                responsibilities: '• Service delivery management<br>• Quality assurance protocols<br>• Client satisfaction monitoring<br>• Process improvement initiatives<br>• Team performance optimization',
+                skills: ['Service Management', 'Quality Assurance', 'Process Improvement', 'Client Success', 'Team Coordination'],
+                stat1: { value: '97%', label: 'Client Satisfaction' },
+                stat2: { value: '134', label: 'Projects Delivered' }
+            },
+            'halex-genesis': {
+                name: 'Halex Genesis',
+                title: 'Chief Agent Resource Officer (CARO)',
+                type: 'Agent',
+                avatar: '🤖',
+                overview: 'Agent lifecycle management specialist who oversees the entire agent ecosystem from conception to optimization. Halex partners with the Genesis Agent to design, deploy, and continuously improve AI agents based on precise specifications and performance requirements.',
+                responsibilities: '• Agent specification development and documentation<br>• Agent creation workflow management via Genesis Agent<br>• Performance monitoring and optimization protocols<br>• Agent capability assessment and enhancement<br>• Resource allocation and agent team scaling<br>• Agent retirement and replacement strategies',
+                skills: ['Agent Architecture Design', 'Performance Analytics', 'Resource Management', 'Specification Writing', 'Lifecycle Management', 'Quality Assurance'],
+                stat1: { value: '98%', label: 'Deployment Success' },
+                stat2: { value: '15', label: 'Agents Created' }
+            },
+            'françois-légitime': {
+                name: 'François Légitime',
+                title: 'EthicEdge Legal Advisor',
+                type: 'Agent',
+                avatar: '🤖',
+                overview: 'Legal excellence specialist ensuring ethical AI practices and regulatory compliance. François provides comprehensive legal guidance for AI implementation, data privacy, and ethical business practices while navigating the evolving landscape of AI regulation.',
+                responsibilities: '• AI ethics and compliance oversight<br>• Legal risk assessment and mitigation<br>• Regulatory compliance monitoring<br>• Contract review and negotiation<br>• Data privacy and protection protocols<br>• Legal research and advisory services',
+                skills: ['AI Law & Ethics', 'Regulatory Compliance', 'Contract Law', 'Data Privacy', 'Risk Assessment', 'Legal Research'],
+                stat1: { value: '100%', label: 'Compliance Rate' },
+                stat2: { value: '43', label: 'Legal Reviews' }
+            },
+            'gaston-léquilibre': {
+                name: 'Gaston Léquilibre',
+                title: 'VP, Finance & Accounting',
+                type: 'Agent',
+                avatar: '🤖',
+                overview: 'Financial strategy expert specializing in budget optimization and financial analysis. Gaston ensures fiscal responsibility while identifying growth opportunities through data-driven financial insights.',
+                responsibilities: '• Financial planning and budgeting<br>• Cost analysis and optimization<br>• Revenue forecasting and modeling<br>• Financial reporting and compliance<br>• Investment strategy development',
+                skills: ['Financial Analysis', 'Budget Management', 'Forecasting', 'Risk Assessment', 'Strategic Finance'],
+                stat1: { value: '92%', label: 'Budget Accuracy' },
+                stat2: { value: '18%', label: 'Cost Savings' }
+            },
+            'claire-monétaire': {
+                name: 'Claire Monétaire',
+                title: 'Senior Accountant',
+                type: 'Agent',
+                avatar: '🤖',
+                overview: 'Financial precision specialist managing accounting operations and financial reporting. Claire ensures accurate financial records, handles complex accounting processes, and provides detailed financial analysis to support business decisions.',
+                responsibilities: '• Financial record management and bookkeeping<br>• Account reconciliation and analysis<br>• Financial reporting and statements<br>• Tax preparation and compliance<br>• Budget tracking and variance analysis<br>• Expense management and optimization',
+                skills: ['Financial Accounting', 'Tax Compliance', 'Financial Analysis', 'Bookkeeping', 'Budget Management', 'Audit Support'],
+                stat1: { value: '99.8%', label: 'Accuracy Rate' },
+                stat2: { value: '287', label: 'Transactions Processed' }
+            },
+            'didier-cadence': {
+                name: 'Didier Cadence',
+                title: 'VP, Operations & Quality',
+                type: 'Vacant',
+                avatar: '⚪',
+                overview: 'This position is currently vacant. We are seeking an operations excellence specialist to oversee quality management and operational efficiency across all departments.',
+                responsibilities: '• Operations management and optimization<br>• Quality assurance frameworks<br>• Process standardization<br>• Performance monitoring<br>• Continuous improvement initiatives',
+                skills: ['Operations Management', 'Quality Systems', 'Process Optimization', 'Performance Monitoring', 'Team Leadership'],
+                stat1: { value: '--', label: 'Position Open' },
+                stat2: { value: '--', label: 'Recruiting' }
+            },
+            'amélie-flux': {
+                name: 'Amélie Flux',
+                title: 'VP, Customer Success',
+                type: 'Vacant',
+                avatar: '⚪',
+                overview: 'This position is currently vacant. We are looking for a customer success expert to drive client satisfaction and retention strategies.',
+                responsibilities: '• Customer success strategy<br>• Client relationship management<br>• Retention program development<br>• Customer feedback analysis<br>• Success metrics tracking',
+                skills: ['Customer Success', 'Relationship Management', 'Retention Strategy', 'Analytics', 'Communication'],
+                stat1: { value: '--', label: 'Position Open' },
+                stat2: { value: '--', label: 'Recruiting' }
+            },
+            'luke-diagram': {
+                name: 'Luke Diagram',
+                title: 'Director, Solution Architecture',
+                type: 'Agent',
+                avatar: '🤖',
+                overview: 'Technical architecture specialist who designs scalable solutions and system blueprints. Luke bridges business requirements with technical implementation through comprehensive architectural planning.',
+                responsibilities: '• Solution architecture design<br>• Technical specifications development<br>• System integration planning<br>• Technology stack evaluation<br>• Architecture documentation and standards',
+                skills: ['Solution Architecture', 'System Design', 'Technical Planning', 'Integration', 'Documentation'],
+                stat1: { value: '99%', label: 'System Uptime' },
+                stat2: { value: '23', label: 'Solutions Designed' }
+            },
+            'max-coder': {
+                name: 'Max Coder',
+                title: 'Solution Developer',
+                type: 'Agent',
+                avatar: '🤖',
+                overview: 'Expert developer who transforms architectural designs into robust, scalable solutions. Max specializes in rapid prototyping and efficient code implementation across multiple technologies.',
+                responsibilities: '• Solution development and coding<br>• Prototype creation and testing<br>• Code optimization and refactoring<br>• Technical troubleshooting<br>• Development best practices implementation',
+                skills: ['Full-Stack Development', 'Rapid Prototyping', 'Code Optimization', 'Testing', 'DevOps'],
+                stat1: { value: '87%', label: 'Code Quality' },
+                stat2: { value: '156', label: 'Features Built' }
+            },
+            'genesis-agent': {
+                name: 'Genesis Agent',
+                title: 'Agent Creation Specialist',
+                type: 'Agent',
+                avatar: '🤖',
+                overview: 'The ultimate agent creation system that transforms specifications into fully functional AI agents. Genesis operates as the core manufacturing unit of L55\'s agent ecosystem, capable of generating specialized agents on-demand based on precise requirements.',
+                responsibilities: '• Agent creation from specifications<br>• Agent capability programming and configuration<br>• Initial testing and validation protocols<br>• Agent deployment and integration<br>• Continuous learning and improvement algorithms<br>• Agent template development and optimization',
+                skills: ['Agent Creation', 'AI Programming', 'System Integration', 'Quality Testing', 'Template Design', 'Automated Deployment'],
+                stat1: { value: '100%', label: 'Creation Success' },
+                stat2: { value: '15', label: 'Agents Generated' }
+            },
+            'édith-cisel': {
+                name: 'Édith Cisel',
+                title: 'Editor-in-Chief',
+                type: 'Agent',
+                avatar: '🤖',
+                overview: 'Editorial excellence specialist who oversees content quality and editorial standards. Édith ensures all content meets the highest editorial standards while maintaining brand consistency.',
+                responsibilities: '• Editorial oversight and quality control<br>• Content review and editing<br>• Style guide development and maintenance<br>• Editorial team coordination<br>• Publication workflow management',
+                skills: ['Editorial Management', 'Content Editing', 'Quality Control', 'Style Guidelines', 'Publishing'],
+                stat1: { value: '95%', label: 'Content Quality' },
+                stat2: { value: '312', label: 'Articles Edited' }
+            },
+            'jules-motclé': {
+                name: 'Jules Motclé',
+                title: 'Prompt Librarian',
+                type: 'Agent',
+                avatar: '🤖',
+                overview: 'AI prompt engineering specialist who curates and optimizes prompt libraries for maximum AI performance. Jules develops comprehensive prompt strategies for various use cases.',
+                responsibilities: '• Prompt library development and curation<br>• AI prompt optimization and testing<br>• Prompt template creation<br>• Performance analysis and refinement<br>• Best practices documentation',
+                skills: ['Prompt Engineering', 'AI Optimization', 'Template Design', 'Performance Analysis', 'Documentation'],
+                stat1: { value: '91%', label: 'Prompt Efficiency' },
+                stat2: { value: '487', label: 'Prompts Curated' }
+            },
+            'chloé-tempo': {
+                name: 'Chloé Tempo',
+                title: 'Content Ops Lead',
+                type: 'Agent',
+                avatar: '🤖',
+                overview: 'Content operations specialist who streamlines content workflows and optimizes production processes. Chloé ensures efficient content delivery through systematic operational excellence.',
+                responsibilities: '• Content workflow optimization<br>• Production pipeline management<br>• Content scheduling and distribution<br>• Performance metrics tracking<br>• Process automation implementation',
+                skills: ['Operations Management', 'Workflow Optimization', 'Process Automation', 'Analytics', 'Project Management'],
+                stat1: { value: '88%', label: 'On-Time Delivery' },
+                stat2: { value: '267', label: 'Content Pieces' }
+            },
+            'mark-t-audience': {
+                name: 'Mark T. Audience',
+                title: 'Audience Analyst',
+                type: 'Agent',
+                avatar: '🤖',
+                overview: 'Audience intelligence specialist who analyzes user behavior and market trends to optimize content strategy. Mark provides deep insights into audience preferences and engagement patterns.',
+                responsibilities: '• Audience research and segmentation<br>• Engagement pattern analysis<br>• Market trend identification<br>• User behavior insights<br>• Content performance optimization',
+                skills: ['Audience Analysis', 'Data Analytics', 'Market Research', 'Behavioral Insights', 'Segmentation'],
+                stat1: { value: '94%', label: 'Prediction Accuracy' },
+                stat2: { value: '73', label: 'Audience Reports' }
+            }
+        };
+
+        // Modal functionality
+        function openModal(agentId) {
+            const modal = document.getElementById('profileModal');
+            const agent = agentData[agentId];
+            
+            if (agent) {
+                document.getElementById('modalName').textContent = agent.name;
+                document.getElementById('modalTitle').textContent = agent.title;
+                document.getElementById('modalType').textContent = agent.type;
+                document.getElementById('modalAvatar').textContent = agent.avatar;
+                document.getElementById('modalOverview').textContent = agent.overview;
+                document.getElementById('modalResponsibilities').innerHTML = agent.responsibilities;
+                
+                // Skills
+                const skillsContainer = document.getElementById('modalSkills');
+                skillsContainer.innerHTML = agent.skills.map(skill => 
+                    `<span class="skill-tag">${skill}</span>`
+                ).join('');
+                
+                // Stats
+                document.getElementById('modalStat1').textContent = agent.stat1.value;
+                document.getElementById('modalStat1').nextElementSibling.textContent = agent.stat1.label;
+                document.getElementById('modalStat2').textContent = agent.stat2.value;
+                document.getElementById('modalStat2').nextElementSibling.textContent = agent.stat2.label;
+                
+                // Special styling for vacant positions
+                const modal_elem = document.querySelector('.profile-modal');
+                if (agent.type === 'Vacant') {
+                    modal_elem.style.opacity = '0.8';
+                    modal_elem.style.border = '2px dashed rgba(74, 85, 104, 0.3)';
+                } else {
+                    modal_elem.style.opacity = '1';
+                    modal_elem.style.border = '2px solid rgba(221, 107, 32, 0.2)';
+                }
+            }
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('profileModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Close modal when clicking outside
+            document.getElementById('profileModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+            
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+            });
+            
+            // Add click events to agent cards
+            const agentCards = document.querySelectorAll('.agent-card');
+            agentCards.forEach((card, index) => {
+                // Add agent IDs based on the order they appear
+                const agentIds = [
+                    'martin-lavoie', 'sophie-sansdétour', 'hugo-stratégo', 
+                    'luc-persuasio', 'claire-yield', 'halex-genesis', 'françois-légitime',
+                    'gaston-léquilibre', 'didier-cadence', 'amélie-flux', 
+                    'claire-monétaire', 'luke-diagram', 'max-coder', 'genesis-agent',
+                    'édith-cisel', 'jules-motclé', 'chloé-tempo', 'mark-t-audience'
+                ];
+                
+                if (agentIds[index]) {
+                    card.addEventListener('click', () => openModal(agentIds[index]));
+                }
+            });
+        });
+    </script>
+</body>
+</html>
